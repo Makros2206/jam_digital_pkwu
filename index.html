@@ -1,0 +1,585 @@
+<html lang="id"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jam Digital</title>
+    <style>
+        
+    body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: column;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.clock-container {
+    text-align: center;
+}
+
+#divider {
+    width: 100%;
+    border: 3px solid var(--primary-color);
+    margin: 15px 0;
+}
+
+#clock {
+    font-size: 72px;
+    margin: 20px 0;
+    text-shadow: 5px 7px 10px rgba(0, 0, 0, 5);
+}
+
+#date {
+    font-size: 28px;
+    margin-top: 10px;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 3);
+}
+
+#weather {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.logo-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.school-logo {
+    max-width: 150px;
+    height: auto;
+}
+
+.time-container {
+    border: 9px solid var(--primary-color);
+    padding: 20px;
+    border-radius: 30px;
+    margin: 20px 0;
+    background-color: var(--secondary-bg-color);
+}
+
+.title {
+    font-size: 45px;
+    font-weight: bold;
+    padding: 20px;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+    background-color: var(--secondary-bg-color);
+    display: inline-block;
+}
+
+.group-name1 {
+    font-size: 30px; 
+    border: 7px solid var(--primary-color);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0;  
+}
+
+.group-name {
+    border: 4px solid var(--primary-color);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+    text-align: left;
+    display: inline-block;
+}
+
+/* Tampilan untuk tombol */
+button {
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tampilan untuk elemen select */
+select, input[type="text"] {
+    padding: 12px 20px;
+    border: 2px solid #007bff;
+    border-radius: 50px;
+    background-color: white;
+    color: #333;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    margin: 10px 0;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+select:hover, input[type="text"]:hover {
+    border-color: #0056b3;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+select:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Gaya khusus untuk input text */
+input[type="text"]::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+/* Definisikan tema-tema di sini */
+.grunge-theme {
+    --bg-color: #2c2c2c;
+    --text-color: #f2f2f2;
+    --primary-color: #ff5f5f;
+    --secondary-bg-color: #3e3e3e;
+}
+
+.autumn-theme {
+    --bg-color: #d35400;
+    --text-color: #ffffff;
+    --primary-color: #c0392b;
+    --secondary-bg-color: #e74c3c;
+}
+
+.summer-theme {
+    --bg-color: #ffd700;
+    --text-color: #004e64;
+    --primary-color: #00b4d8;
+    --secondary-bg-color: #caf0f8;
+}
+
+.minimalist-theme {
+    --bg-color: #f4f4f9;
+    --text-color: #333;
+    --primary-color: #6c757d;
+    --secondary-bg-color: #e9ecef;
+}
+
+.neon-theme {
+    --bg-color: #0e0b16;
+    --text-color: #fff;
+    --primary-color: #f72585;
+    --secondary-bg-color: #1a1a2e;
+}
+
+.retro-theme {
+    --bg-color: #fdf3e7;
+    --text-color: #2b2b2b;
+    --primary-color: #f28d35;
+    --secondary-bg-color: #ffe5b9;
+}
+
+.dark-theme {
+    --bg-color: #1e1e1e;
+    --text-color: #f0f0f0;
+    --primary-color: #ffcc00;
+    --secondary-bg-color: #333333;
+}
+
+.light-theme {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --primary-color: #007bff;
+    --secondary-bg-color: #e9ecef;
+}
+
+.pastel-theme {
+    --bg-color: #f8f9fa;
+    --text-color: #495057;
+    --primary-color: #ff6f61;
+    --secondary-bg-color: #e2e6ea;
+}
+
+.nature-theme {
+    --bg-color: #a8e6cf;
+    --text-color: #004d40;
+    --primary-color: #ffab40;
+    --secondary-bg-color: #ff6f61;
+}
+
+.ocean-theme {
+    --bg-color: #1e3c72;
+    --text-color: #ffffff;
+    --primary-color: #f6d365;
+    --secondary-bg-color: #ffaf7b;
+}
+
+.classic-theme {
+    --bg-color: #f8f9fa;
+    --text-color: #212529;
+    --primary-color: #6f42c1;
+    --secondary-bg-color: #e9ecef;
+}
+    </style>
+</head>
+
+
+<body class="light-theme">
+    <div class="clock-container">
+        <div class="group-name1">
+            Proyek Pkwu<br>
+            Membuat Web Jam Digital
+        </div>
+          <div class="logo-container">
+        <img src="https://smkplusumarzahidsemelo.sch.id/upload/konfigurasi/1689254249_72c4d140dd03bf20fbab.png" alt="Logo SMK Plus Umar Zahid Semelo" class="school-logo">
+    </div>
+        <div class="time-container">
+            <div id="clock">10:20:17</div>
+            <hr id="divider">
+            <div id="date">Sabtu, 19 Oktober 2024</div>
+            <div id="weather">Cuaca di Jombang: 34.99°C, awan pecah</div>
+            <div id="air-quality">Kualitas Udara: </div>
+            <div id="wind-speed">Kecepatan Angin: 1.35 m/s</div>
+            <div id="wind-direction">Arah Angin: </div>
+            <div id="humidity">Kelembaban: 40 %</div>
+            
+            
+            <div id="forecast" style="display: none;"><h3>Ramalan Cuaca 5 Hari di Jombang</h3><p>19/10/2024 - 35.44°C, hujan rintik-rintik</p><p>20/10/2024 - 32.89°C, hujan rintik-rintik</p><p>21/10/2024 - 34°C, hujan rintik-rintik</p><p>22/10/2024 - 31.72°C, hujan rintik-rintik</p><p>23/10/2024 - 35.32°C, awan mendung</p></div>
+        </div>
+
+        <div class="group-name">
+            <strong>Nama Kelompok:</strong><br>
+            1. Machrus<br>
+            2. Muhammad Ferdiansya<br>
+            3. Moh Agos Aji Prasetyo<br>
+            4. Alfian Kartiko Putro
+        </div>
+        <br>
+       
+     <button id="forecast-button" onclick="toggleForecast()">Lihat Ramalan Cuaca 5 Hari</button>
+        <br>
+        
+        
+        <select id="theme-selector" onchange="selectTheme()">
+            <option value="light-theme">Tema Terang</option>
+            <option value="dark-theme">Tema Gelap</option>
+            <option value="grunge-theme">Tema Grunge</option>
+            <option value="autumn-theme">Tema Musim Gugur</option>
+            <option value="summer-theme">Tema Musim Panas</option>
+            <option value="minimalist-theme">Tema Minimalis</option>
+            <option value="neon-theme">Tema Neon</option>
+            <option value="retro-theme">Tema Retro</option>
+            <option value="pastel-theme">Tema Lembut</option>
+            <option value="nature-theme">Tema Alam</option>
+            <option value="ocean-theme">Tema Laut</option>
+            <option value="classic-theme">Tema Klasik</option>
+            <option value="auto-change-theme">Tema Berganti Otomatis</option>
+        </select>
+        <br>
+
+        <select id="font-selector" onchange="changeFont()">
+          <option value="Arial, sans-serif">Arial</option>
+          <option value="'Courier New', Courier, monospace">Courier New</option>
+          <option value="'Georgia', serif">Georgia</option>
+          <option value="'Times New Roman', Times, serif">Times New Roman</option>
+          <option value="'Verdana', sans-serif">Verdana</option>
+          <option value="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</option>
+          <option value="'Lucida Console', Monaco, monospace">Lucida Console</option>
+          <option value="'Tahoma', Geneva, sans-serif">Tahoma</option>
+</select>
+        
+        
+        <br>
+        <select id="format-selector" onchange="changeFormat()">
+            <option value="24">Format 24 Jam</option>
+            <option value="12">Format 12 Jam</option>
+        </select>
+<br>
+<select id="timezone-selector" onchange="changeTimezone()">
+            <option value="0">Waktu Indonesia Bagian Barat (WIB)</option>
+            <option value="1">Waktu Indonesia Bagian Tengah (WITA)</option>
+            <option value="2">Waktu Indonesia Bagian Timur (WIT)</option>
+</select>
+        <br>
+        <input type="text" id="city-input" placeholder="Masukkan nama kota">
+        <br>
+        <button onclick="updateWeather()">Ganti Kota</button>
+        <br>
+        <br>
+        
+        
+        
+        <button class="download-btn" id="download-btn">Unduh Scrip HTML</button>
+        <br>
+        <br>
+        <button class="download-btn" id="download-report">Unduh Laporan</button>
+  
+    </div>
+
+    <script>
+        const themes = [
+            'light-theme', 
+            'dark-theme', 
+            'grunge-theme', 
+            'autumn-theme', 
+            'summer-theme', 
+            'minimalist-theme', 
+            'neon-theme', 
+            'retro-theme',
+            'pastel-theme', 
+            'nature-theme', 
+            'ocean-theme', 
+            'classic-theme'
+        ];
+
+        let currentThemeIndex = 0;
+        let autoChangeInterval; 
+        let timeFormat = '24'; 
+        let timezoneOffset = 0;
+        
+        
+
+        function selectTheme() {
+            const themeSelector = document.getElementById('theme-selector');
+            const selectedTheme = themeSelector.value;
+
+            themes.forEach(theme => document.body.classList.remove(theme));
+
+            if (selectedTheme === 'auto-change-theme') {
+                autoChangeTheme();
+            } else {
+                clearInterval(autoChangeInterval);
+                document.body.classList.add(selectedTheme);
+            }
+        }
+
+        function autoChangeTheme() {
+            themes.forEach(theme => document.body.classList.remove(theme));
+            document.body.classList.add(themes[currentThemeIndex]);
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+
+            autoChangeInterval = setInterval(() => {
+                themes.forEach(theme => document.body.classList.remove(theme));
+                document.body.classList.add(themes[currentThemeIndex]);
+                currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            }, 2500);
+        }
+        
+        function changeFont() {
+    const fontSelector = document.getElementById('font-selector');
+    document.body.style.fontFamily = fontSelector.value;
+}
+
+        function updateClock() {
+            const now = new Date();
+            now.setHours(now.getHours() + timezoneOffset); 
+            const hours = timeFormat === '24' ? String(now.getHours()).padStart(2, '0') : String(now.getHours() % 12 || 12).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const ampm = timeFormat === '12' ? (now.getHours() >= 12 ? ' PM' : ' AM') : '';
+
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}${ampm}`;
+            document.getElementById('date').textContent = now.toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        }
+
+        async function getCityCoordinates(city) {
+    const apiKey = '425cf1182d47268c1be3fc9e73d1317b'; 
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&lang=id`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        if (response.ok) {
+            return { lat: data.coord.lat, lon: data.coord.lon };
+        } else {
+            throw new Error('Kota tidak ditemukan');
+        }
+    } catch (error) {
+        document.getElementById('weather').textContent = 'Terjadi kesalahan: ' + error.message;
+    }
+}
+
+        async function getAirQuality(lat, lon) {
+    const apiKey = '425cf1182d47268c1be3fc9e73d1317b'; 
+    const url = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        if (response.ok) {
+            const airQualityIndex = data.list[0].main.aqi; 
+            const airQualityDescription = getAirQualityDescription(airQualityIndex);
+            document.getElementById('air-quality').textContent = `Kualitas Udara: ${airQualityIndex} (${airQualityDescription})`;
+        } else {
+            document.getElementById('air-quality').textContent = 'Gagal mengambil data kualitas udara';
+        }
+    } catch (error) {
+        document.getElementById('air-quality').textContent = 'Terjadi kesalahan: ' + error.message;
+    }
+}
+
+function getAirQualityDescription(index) {
+    switch (index) {
+        case 1: return 'Baik';
+        case 2: return 'Sedang';
+        case 3: return 'Tidak Sehat untuk kelompok sensitif';
+        case 4: return 'Tidak Sehat';
+        case 5: return 'Berbahaya';
+        default: return 'Data tidak tersedia';
+    }
+} 
+        async function getWeather(city) {
+    const apiKey = '425cf1182d47268c1be3fc9e73d1317b'; 
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}&lang=id`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        if (response.ok) {
+            const temperature = data.main.temp;
+            const description = data.weather[0].description;
+            const windSpeedKmH = data.wind.speed; 
+            const windSpeedMs = (windSpeedKmH / 3.6).toFixed(2); 
+            const windDirection = data.wind.deg;
+            const humidity = data.main.humidity;
+
+            document.getElementById('weather').textContent = `Cuaca di ${city}: ${temperature}°C, ${description}`;
+            document.getElementById('wind-speed').textContent = `Kecepatan Angin: ${windSpeedMs} m/s`; // Menampilkan dalam m/s
+            document.getElementById('humidity').textContent = `Kelembaban: ${humidity} %`;
+            document.getElementById('wind-direction').textContent = `Arah Angin: ${getWindDirection(windDirection)}`; // Menampilkan arah angin
+        } else {
+            document.getElementById('weather').textContent = 'Gagal mengambil data cuaca';
+        }
+    } catch (error) {
+        document.getElementById('weather').textContent = 'Terjadi kesalahan: ' + error.message;
+    }
+}
+
+function getWindDirection(degree) {
+    if (degree >= 337.5 || degree < 22.5) return 'Utara';
+    else if (degree >= 22.5 && degree < 67.5) return 'Timur Laut';
+    else if (degree >= 67.5 && degree < 112.5) return 'Timur';
+    else if (degree >= 112.5 && degree < 15.5) return 'Tenggara';
+    else if (degree >= 157.5 && degree < 202.5) return 'Selatan';
+    else if (degree >= 202.5 && degree < 247.5) return 'Barat Daya';
+    else if (degree >= 247.5 && degree < 292.5) return 'Barat';
+    else if (degree >= 292.5 && degree < 337.5) return 'Barat Laut';
+    return 'Tidak Diketahui';
+}
+        async function getForecast(city) {
+    const apiKey = '425cf1182d47268c1be3fc9e73d1317b'; // API key Anda
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}&lang=id`;
+    
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        if (response.ok) {
+         
+            let forecastHtml = `<h3>Ramalan Cuaca 5 Hari di ${city}</h3>`;
+             
+            data.list.forEach((forecast, index) => {
+                if (index % 8 === 0) { 
+                    const date = new Date(forecast.dt * 1000);
+                    const day = date.toLocaleDateString('id-ID', { weekday: 'long' }); 
+                    const dateString = date.toLocaleDateString('id-ID');
+                    const temperature = forecast.main.temp;
+                    const description = forecast.weather[0].description;
+                    
+                    // Menambahkan nama hari ke tampilan ramalan cuaca
+                    forecastHtml += `<p>${day}, ${dateString} - ${temperature}°C, ${description}</p>`;
+                }
+            });
+            document.getElementById('forecast').innerHTML = forecastHtml;
+        } else {
+            document.getElementById('forecast').textContent = 'Gagal mengambil ramalan cuaca';
+        }
+    } catch (error) {
+        document.getElementById('forecast').textContent = 'Terjadi kesalahan: ' + error.message;
+    }
+}
+        
+        function toggleForecast() {
+            const forecastElement = document.getElementById('forecast');
+            const cityInput = document.getElementById('city-input').value;
+
+            if (forecastElement.style.display === "none") {
+                getForecast(cityInput); // Ambil ramalan cuaca jika belum ditampilkan
+                forecastElement.style.display = "block"; // Tampilkan ramalan cuaca
+                document.getElementById('forecast-button').textContent = "Sembunyikan Ramalan Cuaca 5 Hari"; 
+            } else {
+                forecastElement.style.display = "none"; // Sembunyikan ramalan cuaca
+                document.getElementById('forecast-button').textContent = "Lihat Ramalan Cuaca 5 Hari"; 
+            }
+        }
+
+        function changeTimezone() {
+    const timezoneSelector = document.getElementById('timezone-selector');
+    timezoneOffset = parseInt(timezoneSelector.value);
+}
+
+        function changeFormat() {
+            const formatSelector = document.getElementById('format-selector');
+            timeFormat = formatSelector.value;
+        }
+
+        async function updateWeather() {
+    const cityInput = document.getElementById('city-input').value;
+    if (cityInput) {
+        const { lat, lon } = await getCityCoordinates(cityInput); 
+        getWeather(cityInput);
+        getForecast(cityInput);
+        getAirQuality(lat, lon); 
+        document.getElementById('forecast').style.display = 'none'; 
+        document.getElementById('forecast-button').textContent = "Lihat Ramalan Cuaca 5 Hari"; 
+    }
+}
+
+const downloadButton = document.getElementById('download-report');
+        downloadButton.addEventListener('click', function() {
+            const link = document.createElement('a');
+            link.href = 'Laporan.pdf'; // Ganti dengan nama file yang sesuai
+            link.download = 'Laporan.pdf'; // Nama file yang diunduh
+            link.click();
+        });
+        
+document.addEventListener("DOMContentLoaded", function() {
+    const defaultCity = 'Jombang';
+    timezoneOffset = 0;
+    getWeather(defaultCity);
+    getCityCoordinates(defaultCity);
+    getForecast(defaultCity);
+    document.getElementById('city-input').value = defaultCity;
+    document.getElementById('timezone-selector').value = '0'; 
+});
+       document.getElementById('download-btn').addEventListener('click', () => {
+        // Ambil seluruh HTML dari halaman ini
+        const htmlContent = document.documentElement.outerHTML;
+
+        // Buat Blob dari konten HTML
+        const blob = new Blob([htmlContent], { type: 'text/html' });
+
+        // Buat link untuk unduh file
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'jam_digital.html';  
+        link.click();
+    });
+        setInterval(updateClock, 1000);
+        updateClock(); 
+        getForecast('Jombang'); 
+        getWeather('Jombang');
+        getCityCoordinates('Jombang');
+        getAirQuality('-7.5614789', '112.2592315,9')
+        updateWeather();
+    
+    </script>
+  </body>
+</html>
